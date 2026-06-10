@@ -13,6 +13,12 @@ builder.Services.AddSwaggerGen();
 //db
 builder.Services.AddInfrastructureLayer(builder.Configuration);
 
+//egistramos MediatR
+builder.Services.AddMediatR(cfg => 
+    cfg.RegisterServicesFromAssembly(typeof(projectWeb.Application.DTOs.TaskDto).Assembly));
+
+
+
 // cors para 
 builder.Services.AddCors(options =>
 {
@@ -32,15 +38,14 @@ builder.Services.AddOpenApi();
 var app = builder.Build();
 
 
-
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
     
 }
-
+// activacion de cors 
+app.UseCors("AllowAngularFrontend");
 app.MapControllers();
 app.Run();
 
