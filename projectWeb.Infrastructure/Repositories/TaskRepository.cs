@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using projectWeb.Application.Interfaces;
 using Task = projectWeb.Domain.Entities.Task;
 
@@ -16,5 +17,10 @@ public class TaskRepository : ITaskRepository
         _context.Tasks.Add(task);
         await _context.SaveChangesAsync();
         return task.Id;
+    }
+
+    public async Task<List<projectWeb.Domain.Entities.Task>> GetAllAsync()
+    {
+        return await _context.Tasks.ToListAsync();
     }
 }

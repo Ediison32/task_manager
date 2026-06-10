@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using projectWeb.Application.Features.Tareas.Commands.CreateTask;
+using projectWeb.Application.Features.Tareas.Queries.GetTasks;
 
 namespace projectWeb.Api.Controllers;
 
@@ -25,5 +26,15 @@ public class TaskController : ControllerBase
         
         // retornamos una respuesta con el id de la tarea crada en mysql 
         return Ok(new { id = taskId, message = "Tarea creada exitosamente en la nube " });
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        // enviamos query 
+        var taskss = await _mediator.Send(new GetTasksQuery());
+        
+        // retornamos respuesta
+        return Ok(taskss);
     }
 }
