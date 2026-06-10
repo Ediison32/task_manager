@@ -9,7 +9,7 @@ public static class ServiceCollectionsExtensions
     public static IServiceCollection AddInfrastructureLayer(this IServiceCollection services, IConfiguration configuration)
     {
         // cadena para halar appsetion.json 
-        var connetionsString = configuration.GetConnectionString("DefaultConection");
+        var connetionsString = configuration.GetConnectionString("DefaultConnection");
         
         // pollemo 
         services.AddDbContext<AppDbContext>(options =>

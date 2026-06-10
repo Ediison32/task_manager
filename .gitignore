@@ -483,6 +483,8 @@ $RECYCLE.BIN/
 # Vim temporary swap files
 *.swp
 
-# Configuración de secretos locales - No subir a Git
-**/appsettings.Development.json
-**/appsettings.Local.json
+# Configuraciï¿½n de secretos locales - No subir a Git
+/appsettings.Development.json
+/appsettings.Local.json
+appsettings.json
+/appsettings.json
